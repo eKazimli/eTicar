@@ -37,7 +37,8 @@ public class UserService {
     }
 
     public User findUserById(Long id) {
-        return userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+        return userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
     }
 
     public void increaseBalance(Long id, Double money) {

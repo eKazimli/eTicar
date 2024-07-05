@@ -18,7 +18,7 @@ public class UserController {
     UserService userService;
 
     @PostMapping("/create")
-    public ResponseEntity<User> createUser(@RequestBody User user) {
+    public ResponseEntity<?> createUser(@RequestBody User user) {
         User savedUser = userService.create(user);
         return ResponseEntity.ok(savedUser);
     }
@@ -36,7 +36,7 @@ public class UserController {
     }
 
     @GetMapping("/{userId}")
-    public ResponseEntity<User> getUserById(@PathVariable Long userId) {
+    public ResponseEntity<?> getUserById(@PathVariable Long userId) {
         return ResponseEntity.ok(userService.findUserById(userId));
     }
 

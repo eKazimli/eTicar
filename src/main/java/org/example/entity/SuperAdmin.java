@@ -1,44 +1,30 @@
 package org.example.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
 @Getter
 @Setter
-@Table(name = "users")
-public class User {
+@Table(name = "admins")
+public class SuperAdmin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
     @NotBlank(message = "Cannot be empty")
     @Column(nullable = false, unique = true, length = 16)
-    String username;
+    String name;
 
     @NotBlank(message = "Cannot be empty")
     @Column(nullable = false)
     String password;
-
-    @Column(nullable = false, length = 10)
-    String phone;
-
-    @Email
-    String email;
-
-    Double balance = 0.0;
-
-    Boolean admin = false;
-
-    LocalDate birthDate;
 
     @CreationTimestamp
     LocalDateTime createdAt;
