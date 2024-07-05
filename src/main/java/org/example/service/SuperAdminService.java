@@ -18,8 +18,6 @@ public class SuperAdminService {
     UserRepository userRepository;
 
     public SuperAdmin create(SuperAdmin superAdmin) {
-        superAdmin.setName(superAdmin.getName());
-        superAdmin.setPassword(superAdmin.getPassword());
         return superAdminRepository.save(superAdmin);
     }
 
@@ -50,6 +48,7 @@ public class SuperAdminService {
                 orElseThrow(() -> new RuntimeException("User type not found"));
         if (!user.getAdmin()) {
             user.setAdmin(true);
+            userRepository.save(user);
         } else {
             throw new RuntimeException("This user already has admin rights");
         }
@@ -61,6 +60,7 @@ public class SuperAdminService {
                 orElseThrow(() -> new RuntimeException("User type not found"));
         if (user.getAdmin()) {
             user.setAdmin(false);
+            userRepository.save(user);
         } else {
             throw new RuntimeException("He is not an admin anyway");
         }
