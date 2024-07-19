@@ -24,18 +24,6 @@ public class SuperAdminController {
         return ResponseEntity.ok(superAdminSave);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteSuperAdmin(@PathVariable Long id) {
-        superAdminService.delete(id);
-        return ResponseEntity.ok().build();
-    }
-
-    @PutMapping("/active/{id}")
-    public ResponseEntity<?> SuperAdminActive(@PathVariable Long id) {
-        superAdminService.active(id);
-        return ResponseEntity.ok().build();
-    }
-
     @PutMapping("/adminAuthority/{id}")
     public ResponseEntity<?> AdminAuthority(@PathVariable Long id) {
         superAdminService.adminAuthority(id);
@@ -48,8 +36,4 @@ public class SuperAdminController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<?> getSuperAdminById(@PathVariable Long id) {
-        return ResponseEntity.ok(superAdminService.findSuperAdminById(id));
-    }
 }

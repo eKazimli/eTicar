@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.example.entity.User;
+import org.example.entity.UserBalance;
 import org.example.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -46,11 +47,12 @@ public class UserService {
                 findById(id).
                 orElseThrow(() -> new RuntimeException("User not found"));
         if (user.getIsActive()) {
-            var newBalance = user.getBalance() + money;
+            UserBalance userBalance = user.getBalance();
+            var newBalance = userBalance.getBalance() + money;
             if (newBalance < 0) {
                 throw new IllegalArgumentException("Balance cannot be negative");
             }
-            user.setBalance(newBalance);
+            userBalance.setBalance(newBalance);
             userRepository.save(user);
         } else {
             throw new IllegalArgumentException("User is not active");
@@ -62,11 +64,12 @@ public class UserService {
                 findById(id).
                 orElseThrow(() -> new RuntimeException("User not found"));
         if (user.getIsActive()) {
-            var newBalance = user.getBalance() - money;
+            UserBalance userBalance = user.getBalance();
+            var newBalance = userBalance.getBalance() - money;
             if (newBalance < 0) {
                 throw new IllegalArgumentException("Balance cannot be negative");
             }
-            user.setBalance(newBalance);
+            userBalance.setBalance(newBalance);
             userRepository.save(user);
         } else {
             throw new IllegalArgumentException("User is not active");

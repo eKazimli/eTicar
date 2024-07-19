@@ -19,7 +19,7 @@ public class SuperAdmin {
     Long id;
 
     @NotBlank(message = "Cannot be empty")
-    @Column(nullable = false, unique = true, length = 16)
+    @Column(nullable = false, unique = true)
     String name;
 
     @NotBlank(message = "Cannot be empty")
@@ -31,5 +31,4 @@ public class SuperAdmin {
     @UpdateTimestamp
     LocalDateTime updatedAt;
 
-    Boolean isActive = true;
 }

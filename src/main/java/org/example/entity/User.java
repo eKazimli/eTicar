@@ -21,20 +21,21 @@ public class User {
     Long id;
 
     @NotBlank(message = "Cannot be empty")
-    @Column(nullable = false, unique = true, length = 16)
+    @Column(nullable = false, unique = true)
     String username;
 
     @NotBlank(message = "Cannot be empty")
     @Column(nullable = false)
     String password;
 
+    @Column(nullable = false, length = 7)
+    String fin;
+
     @Column(nullable = false, length = 10)
     String phone;
 
     @Email
     String email;
-
-    Double balance = 0.0;
 
     Boolean admin = false;
 
@@ -46,4 +47,10 @@ public class User {
     LocalDateTime updatedAt;
 
     Boolean isActive = true;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "balance_id", referencedColumnName = "id")
+    UserBalance balance;
+
+
 }
